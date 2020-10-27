@@ -96,6 +96,12 @@ app.get(deployPath + "/download/:videoId/:itag", (req, res) => {
   }
 })
 
+app.use(express.static(path.join(__dirname, "client/build")))
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"))
+})
+
 const port = process.env.PORT || 4000
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`))
