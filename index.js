@@ -5,6 +5,7 @@ const ffmpeg = require("fluent-ffmpeg")
 const cors = require("cors")
 const sanitize = require("sanitize-filename")
 const mime = require("mime-types")
+const path = require("path")
 
 const app = express()
 const deployPath = process.env.deployPath || ""
