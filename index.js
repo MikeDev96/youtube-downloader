@@ -11,7 +11,7 @@ const app = express()
 
 app.use(cors())
 
-app.get("/:videoId", async (req, res) => {
+app.get("/api/:videoId", async (req, res) => {
   try {
     const info = await ytdl.getBasicInfo(`https://www.youtube.com/watch?v=${req.params.videoId}`)
 
@@ -26,7 +26,7 @@ app.get("/:videoId", async (req, res) => {
   }
 })
 
-app.get("/:videoId/:itag/mp3", (req, res) => {
+app.get("/api/:videoId/:itag/mp3", (req, res) => {
   try {
     const ytStream = ytdl(`https://www.youtube.com/watch?v=${req.params.videoId}`, { quality: req.params.itag })
       .on("info", e => {
@@ -55,7 +55,7 @@ app.get("/:videoId/:itag/mp3", (req, res) => {
   }
 })
 
-app.get("/download/:videoId/:itag", (req, res) => {
+app.get("/api/download/:videoId/:itag", (req, res) => {
   try {
     const ytStream = ytdl(`https://www.youtube.com/watch?v=${req.params.videoId}`, { quality: req.params.itag })
 

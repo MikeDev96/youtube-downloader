@@ -38,7 +38,7 @@ const YTDownloader = () => {
   useEffect(() => {
     if (video) {
       setLoading(true)
-      fetch(`${process.env.REACT_APP_API_URL}/${video}`).then(res => res.json()).then(res => {
+      fetch(`/api/${video}`).then(res => res.json()).then(res => {
         setQualities({ audioAndVideo: res.audioAndVideo || [], audio: res.audio || [], video: res.video || [] })
         setLoading(false)
       })
@@ -52,7 +52,7 @@ const YTDownloader = () => {
     header: {
       as: "a",
       content: q.qualityLabel,
-      href: `${process.env.REACT_APP_API_URL}/download/${video}/${q.itag}`,
+      href: `/api/download/${video}/${q.itag}`,
     },
     description: getContentTypeFromMimeType(q.mimeType),
   }))
@@ -61,23 +61,21 @@ const YTDownloader = () => {
     key: q.itag,
     content: <Fragment>
       <List.Content floated="right">
-        <Button circular content="MP3" compact value={q.itag} as="a" href={`${process.env.REACT_APP_API_URL}/${video}/${q.itag}/mp3`} />
+        <Button circular content="MP3" compact value={q.itag} as="a" href={`/api/${video}/${q.itag}/mp3`} />
       </List.Content>
       <List.Header>
-        <a href={`${process.env.REACT_APP_API_URL}/download/${video}/${q.itag}`}>{getContentTypeFromMimeType(q.mimeType)}</a>
+        <a href={`/api/download/${video}/${q.itag}`}>{getContentTypeFromMimeType(q.mimeType)}</a>
       </List.Header>
       <List.Description content={`${getAudioBitrate(q.itag)}k (${q.bitrate})`} />
     </Fragment>,
   }))
-
-  console.log(audioItems)
 
   const videoItems = videoFormats.map(q => ({
     key: q.itag,
     header: {
       as: "a",
       content: q.qualityLabel,
-      href: `${process.env.REACT_APP_API_URL}/download/${video}/${q.itag}`,
+      href: `/api/download/${video}/${q.itag}`,
     },
     description: getContentTypeFromMimeType(q.mimeType),
   }))

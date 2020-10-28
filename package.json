@@ -16,6 +16,6 @@
     "fluent-ffmpeg": "^2.1.2",
     "mime-types": "^2.1.27",
     "sanitize-filename": "^1.6.3",
-    "ytdl-core": "^3.2.2"
+    "ytdl-core": "^4.0.0"
   }
 }
