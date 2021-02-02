@@ -64,7 +64,7 @@ app.get("/api/download/:videoId/:itag", (req, res) => {
       const format = e.player_response.streamingData.formats.concat(...e.player_response.streamingData.adaptiveFormats).find(f => f.itag === parseInt(req.params.itag))
 
       const headers = {
-        "Content-Disposition": `attachment; filename=${title}`
+        "Content-Disposition": `attachment; filename=${encodeURIComponent(title)}`
       }
 
       if (format) {
